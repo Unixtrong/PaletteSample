@@ -249,12 +249,21 @@ private fun Palette.toPreviewColors(): List<PreviewColor> = listOf(
     darkMutedSwatch.toPreviewColor(ColorTarget.DARK_MUTED),
 )
 
-private fun Palette.Swatch?.toPreviewColor(colorTarget: ColorTarget) = PreviewColor(
-    target = colorTarget,
-    backgroundColor = this?.rgb?.let { Color(it) } ?: Color.Black,
-    titleTextColor = this?.titleTextColor?.let { Color(it) } ?: Color.White,
-    bodyTextColor = this?.bodyTextColor?.let { Color(it) } ?: Color.White,
-)
+private fun Palette.Swatch?.toPreviewColor(colorTarget: ColorTarget): PreviewColor {
+    return this?.let {
+        PreviewColor(
+            target = colorTarget,
+            backgroundColor = Color(this.rgb),
+            titleTextColor = Color(this.titleTextColor),
+            bodyTextColor = Color(this.bodyTextColor),
+        )
+    } ?: PreviewColor(
+        target = null,
+        backgroundColor = Color.Black,
+        titleTextColor = Color.White,
+        bodyTextColor = Color.White,
+    )
+}
 
 @Preview
 @Composable

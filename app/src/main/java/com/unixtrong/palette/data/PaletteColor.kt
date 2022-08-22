@@ -3,7 +3,7 @@ package com.unixtrong.palette.data
 import androidx.compose.ui.graphics.Color
 
 data class PreviewColor(
-    val target: ColorTarget,
+    val target: ColorTarget?,
     val backgroundColor: Color,
     val titleTextColor: Color,
     val bodyTextColor: Color,
